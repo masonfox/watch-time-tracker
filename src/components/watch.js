@@ -19,7 +19,7 @@ class Watch extends Component {
     }
 
     _handleLogPress = () => {
-        alert('show log')
+        this.props.navigation.navigate('Watch View')
     }
 
     render() {

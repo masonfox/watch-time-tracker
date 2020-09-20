@@ -15,6 +15,7 @@ const MainStack = createStackNavigator()
 
 // Screen Imports
 import HomeScreen from './src/screens/HomeScreen'
+import WatchViewScreen from './src/screens/WatchViewScreen'
 
 // Modal Imports
 import WatchListModal from './src/modals/WatchListModal'
@@ -23,7 +24,8 @@ import WatchListModal from './src/modals/WatchListModal'
 function MainStackContainer () {
   return (
     <MainStack.Navigator initialRouteName="Home">
-      <MainStack.Screen name="Home" component={HomeScreen} />
+      <MainStack.Screen name="Home" component={HomeScreen} options={{...HeaderStyle }} />
+      <MainStack.Screen name="Watch View" component={WatchViewScreen} options={{...HeaderStyle }} />
     </MainStack.Navigator>
   )
 }
@@ -36,9 +38,9 @@ export default function App() {
     <ApplicationProvider {...eva} theme={eva.light} customMapping={mapping}>
       <IconRegistry icons={EvaIconsPack} />
       <NavigationContainer>
-        <RootStack.Navigator mode="modal">
+        <RootStack.Navigator>
           {/* Main Stack Router */}
-          <RootStack.Screen name="Main" component={MainStackContainer} options={{ headerTitle: 'Home', ...HeaderStyle }} />
+          <RootStack.Screen name="Main" component={MainStackContainer} options={{ headerShown: false }} />
           {/* Modals */}
           <RootStack.Screen name="Watch Selector" component={WatchListModal} options={{...HeaderStyle }} />
         </RootStack.Navigator>
