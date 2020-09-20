@@ -14,7 +14,7 @@ export const Theme = {
 // React-navigation standard header styles
 export const HeaderStyle = {
     headerStyle: {
-        backgroundColor: Theme.colors.primary,
+        backgroundColor: '#3366FF',
     },
     headerTintColor: '#fff'
 }
