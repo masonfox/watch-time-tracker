@@ -1,41 +1,119 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
-import { Button, Layout, Text } from '@ui-kitten/components';
+import { StyleSheet, View } from 'react-native'
+import { Card, Button, Text, Icon, Divider } from '@ui-kitten/components'
+import { Theme } from '../theme'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-class Watch extends Component {
-    state = { count: 1 }
+const DetailIcon = (props) => (
+    <Icon {...props} style={[props.style, { width: 25, height: 25 }]} name='arrow-ios-forward'/>
+  );
 
-    _setCounter = () => {
-        this.setState({
-            count: this.state.count + 1
-        })
+class Watch extends Component {  
+    constructor(props) {
+        super(props)
+        this.state = {}
+    }
+
+    _handleWatchPress = () => {
+        this.props.navigation.navigate('Watch Selector')
+    }
+
+    _handleLogPress = () => {
+        alert('show log')
     }
 
     render() {
         return (
-            <Layout style={styles.container} level='1'>
-
-                <Button onPress={this._setCounter}>
-                    BUTTON
-                </Button>
-
-                <Text style={styles.text}>
-                    Pressed {this.state.count} times
-                </Text>
-
-                </Layout>
+            <View style={styles.container}>
+                <View style={styles.card}>
+                    <View style={styles.clock}>
+                        <View>
+                            <Text style={styles.clockPeriod}>AM</Text>
+                            <Text style={[styles.clockPeriod, styles.activePeriod]}>PM</Text>
+                        </View>
+                        <Text category="h1" style={styles.clockTime}>12:00</Text>
+                        <Text category="c1" style={styles.clockSeconds}>56.7</Text>
+                    </View>
+                    <Divider />
+                    <View style={styles.watchItem}>
+                        <TouchableOpacity onPress={this._handleWatchPress} style={styles.cardBody}>
+                            <Icon
+                                style={styles.icon}
+                                fill={Theme.colors.primary}
+                                name='clock'
+                            />
+                            <View>
+                                <Text category="h5">Vostok Amphibia</Text>
+                                <Text category="s2">Model HK4B</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <Button style={styles.detailButton} onPress={this._handleLogPress} accessoryRight={DetailIcon} />
+                    </View>
+                </View>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-      flexDirection: 'row',
-      alignItems: 'center',
+        marginTop: 15,
+        marginBottom: 25,
     },
-    text: {
-      marginHorizontal: 8,
+    card: {
+        backgroundColor: '#fff',
+        borderWidth: 1,
+        borderColor: '#E4E9F2',
+        borderRadius: 4,
     },
+    watchItem: {
+        flexDirection: 'row',
+        justifyContent: "space-between",
+        alignItems: 'center',
+        paddingTop: 15,
+        paddingBottom: 15,
+        paddingRight: 25,
+        paddingLeft: 25
+    },
+    icon: {
+        width: 40,
+        height: 40,
+        marginRight: 15
+    },
+    cardBody: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+    },
+    detailButton: {
+        borderRadius: 60,
+        height: 30,
+        width: 30
+    },
+    clock: {
+        padding: 15,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    clockPeriod: {
+        color: '#ddd'
+    },
+    activePeriod: {
+        fontWeight: 'bold',
+        color: '#999'
+    },
+    clockTime: {
+        fontSize: 65,
+        fontWeight: 'bold',
+        marginLeft: 15,
+        marginRight: 15,
+        marginTop: -10
+    },
+    clockSeconds: {
+        fontWeight: 'bold',
+        fontSize: 25,
+    }
   });
 
 export default Watch;
