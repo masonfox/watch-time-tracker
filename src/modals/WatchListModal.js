@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
-import { Text, Layout, List, Divider, ListItem } from '@ui-kitten/components'
+import { Text, Layout, List, ListItem, Body } from 'native-base'
 
 const data = new Array(8).fill({
     title: 'Vostok Amphibia',
@@ -21,31 +21,34 @@ class WatchListModal extends Component {
     }
 
     render() {
-        const renderItem = ({ item, index }) => (
-            <ListItem
-                title={() => <Text category="h6" style={styles.title}>{`${item.title} ${index + 1}`}</Text>}
-                description={`${item.description} ${index + 1}`}
-                onPress={() => this._selectWatch()}
-            />
-        )
+        const ListItems = data.map((item, index) => {
+            return (
+                <ListItem onPress={() => this._selectWatch()}>
+                    <Body>
+                        <Text>{ item.title }</Text>
+                        <Text note>{ item.description }</Text>
+                    </Body>
+                </ListItem>
+            )
+        })
+
+        ListItems
 
         return (
-            <Layout level="1">
-                <List
-                    style={styles.container}
-                    data={data}
-                    ItemSeparatorComponent={Divider}
-                    renderItem={renderItem}
-                />
-            </Layout>
-        );
+            <View>
+                <List style={styles.container}>
+                    { ListItems }
+                </List>
+            </View>
+        )
     }
 }
 
 const styles = StyleSheet.create({
     title: {
         paddingLeft: 7,
-        paddingRight: 7
+        paddingRight: 7,
+        backgroundColor: '#fff'
     },
     description: {
 

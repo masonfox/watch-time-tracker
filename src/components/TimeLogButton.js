@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Button } from '@ui-kitten/components'
+import { Button, Text } from 'native-base'
 
 class TimeLogButton extends Component {
     state = {
@@ -10,7 +10,9 @@ class TimeLogButton extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Button size="giant" style={styles.button} status='success'>Measure</Button>
+                <Button style={styles.button}>
+                    <Text>Measure</Text>
+                </Button>
             </View>
         );
     }

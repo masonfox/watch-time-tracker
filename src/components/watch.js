@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Card, Button, Text, Icon, Divider } from '@ui-kitten/components'
+import { Button, Text, Icon } from 'native-base'
 import { Theme } from '../theme'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -34,7 +34,7 @@ class Watch extends Component {
                         <Text category="h1" style={styles.clockTime}>12:00</Text>
                         <Text category="c1" style={styles.clockSeconds}>56.7</Text>
                     </View>
-                    <Divider />
+                    {/* <Divider /> */}
                     <View style={styles.watchItem}>
                         <TouchableOpacity onPress={this._handleWatchPress} style={styles.cardBody}>
                             <Icon
@@ -47,7 +47,9 @@ class Watch extends Component {
                                 <Text category="s2">Model HK4B</Text>
                             </View>
                         </TouchableOpacity>
-                        <Button style={styles.detailButton} onPress={this._handleLogPress} accessoryRight={DetailIcon} />
+                        <Button style={styles.detailButton} onPress={this._handleLogPress}>
+                            <Text>Beep</Text>
+                        </Button>
                     </View>
                 </View>
             </View>

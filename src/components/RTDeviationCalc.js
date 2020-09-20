@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
-import { Text } from '@ui-kitten/components'
+import { Text } from 'native-base'
 
 class RTDeviationCalc extends Component {
     state = {  }
