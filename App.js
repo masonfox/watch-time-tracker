@@ -15,6 +15,9 @@ const MainStack = createStackNavigator()
 import HomeScreen from './src/screens/HomeScreen'
 import WatchViewScreen from './src/screens/WatchViewScreen'
 
+// Modal Imports
+import WatchListModal from './src/modals/WatchListModal'
+
 // Render
 export default class App extends Component {
   constructor(props) {
@@ -43,12 +46,13 @@ export default class App extends Component {
     return (
       <NavigationContainer>
         <MainStack.Navigator>
+          {/* Screens */}
           <MainStack.Screen name="Home" component={HomeScreen} options={{...HeaderStyle }} />
           <MainStack.Screen name="Watch View" component={WatchViewScreen} options={{ title: 'Vostok Amphibia', ...HeaderStyle }} />
+          {/* Modals */}
+          <MainStack.Screen name="Watch Selector" component={WatchListModal} options={{...HeaderStyle }} />
         </MainStack.Navigator>
       </NavigationContainer>
   );
 }
-
-
 }
