@@ -9,25 +9,11 @@ import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 
 // Prepare stack navigator
-const RootStack = createStackNavigator()
 const MainStack = createStackNavigator()
 
 // Screen Imports
 import HomeScreen from './src/screens/HomeScreen'
 import WatchViewScreen from './src/screens/WatchViewScreen'
-
-// Modal Imports
-import WatchListModal from './src/modals/WatchListModal'
-
-// MAIN STACK
-function MainStackContainer () {
-  return (
-    <MainStack.Navigator initialRouteName="Home">
-      <MainStack.Screen name="Home" component={HomeScreen} options={{...HeaderStyle }} />
-      <MainStack.Screen name="Watch View" component={WatchViewScreen} options={{ title: 'Vostok Amphibia', ...HeaderStyle }} />
-    </MainStack.Navigator>
-  )
-}
 
 // Render
 export default class App extends Component {
@@ -56,13 +42,13 @@ export default class App extends Component {
 
     return (
       <NavigationContainer>
-        <RootStack.Navigator>
-        {/* Main Stack Router */}
-        <RootStack.Screen name="Main" component={MainStackContainer} options={{ headerShown: false }} />
-        {/* Modals */}
-        <RootStack.Screen name="Watch Selector" component={WatchListModal} options={{...HeaderStyle }} />
-        </RootStack.Navigator>
+        <MainStack.Navigator>
+          <MainStack.Screen name="Home" component={HomeScreen} options={{...HeaderStyle }} />
+          <MainStack.Screen name="Watch View" component={WatchViewScreen} options={{ title: 'Vostok Amphibia', ...HeaderStyle }} />
+        </MainStack.Navigator>
       </NavigationContainer>
   );
 }
+
+
 }

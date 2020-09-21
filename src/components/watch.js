@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Button, Text, Icon } from 'native-base'
 import { Theme } from '../theme'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import WatchListModal from '../modals/WatchListModal'
 
 const DetailIcon = (props) => (
     <Icon {...props} style={[props.style, { width: 25, height: 25 }]} name='arrow-ios-forward'/>
@@ -11,18 +12,32 @@ const DetailIcon = (props) => (
 class Watch extends Component {  
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            modalVisible: false
+        }
     }
 
-    _handleWatchPress = () => {
-        this.props.navigation.navigate('Watch Selector')
+    _toggleModal = () => {
+        this.setState({ modalVisible: !this.state.modalVisible })
+    }
+
+    _handleWatchSelect = (index) => {
+        alert(`${index} selected`)
+        this._toggleModal()
     }
 
     _handleLogPress = () => {
         this.props.navigation.navigate('Watch View')
     }
 
+    _handleModalClose = (index) => {
+        alert(`${index} selected`)
+        this.setState({ modalVisible: false })
+    }
+
     render() {
+        const { modalVisible } = this.state
+
         return (
             <View style={styles.container}>
                 <View style={styles.card}>
@@ -36,7 +51,7 @@ class Watch extends Component {
                     </View>
                     {/* <Divider /> */}
                     <View style={styles.watchItem}>
-                        <TouchableOpacity onPress={this._handleWatchPress} style={styles.cardBody}>
+                        <TouchableOpacity onPress={this._toggleModal} style={styles.cardBody}>
                             <Icon
                                 style={styles.icon}
                                 fill={Theme.colors.primary}
@@ -52,6 +67,8 @@ class Watch extends Component {
                         </Button>
                     </View>
                 </View>
+
+                <WatchListModal modalVisible={modalVisible} handleClose={this._toggleModal} selectWatch={this._handleWatchSelect} />
             </View>
         );
     }
